@@ -31,23 +31,23 @@
 ## Скриншоты
 
 ### Главная страница
-![Главная страница](core/static/images/homepage.png)
+![Главная страница](diplom/core/static/images/homepage.png)
 
 ### Карта 
-![Карта филиалов](core/static/images/branches_map.png)
+![Карта филиалов](diplom/core/static/images/branches_map.png)
 
 ### Документ о приеме
-![Документ о приеме](core/static/images/doc.png)
+![Документ о приеме](diplom/core/static/images/doc.png)
 
 ### Запись на прием
-![Запись на прием](core/static/images/appointment_form.png)
+![Запись на прием](diplom/core/static/images/appointment_form.png)
 
 ### Написание отзыва
-![Написание отзыва](core/static/images/write_review.png)
+![Написание отзыва](diplom/core/static/images/write_review.png)
 
 ### Панель администратора
-![Панель администратора](core/static/images/admin_panel.png)
+![Панель администратора](diplom/core/static/images/admin_panel.png)
 
 ### Панель администратора записи
-![Панель администратора](core/static/images/admin_panel_ap.png)
+![Панель администратора](diplom/core/static/images/admin_panel_ap.png)
 

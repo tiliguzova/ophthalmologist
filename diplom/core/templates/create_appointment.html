@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание записи</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+    <style>
+        input[type="datetime-local"] {
+    width: 200px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Создание записи</h1>
+ <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label for="{{ form.user.id_for_label }}">{{ form.user.label }}</label>
+            {{ form.user }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.doctor.id_for_label }}">{{ form.doctor.label }}</label>
+            {{ form.doctor }}
+        </div>
+
+        <div class="form-field dt">
+            <label for="{{ form.datetime.id_for_label }}">{{ form.datetime.label }}</label>
+            {{ form.datetime }}
+        </div>
+
+        <div class="form-field status">
+            <label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label>
+            {{ form.status }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.service.id_for_label }}">{{ form.service.label }}</label>
+            {{ form.service }}
+        </div>
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link type="image/x-icon" href="../static/images/shared-vision.png" rel="icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация врача</title>
+    <style>
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .registration-form {
+        background: white;
+        padding: 15px; /* уменьшен padding */
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        width: 100%;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 15px; /* уменьшено расстояние */
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* уменьшено расстояние между элементами */
+    }
+
+    .form-group {
+        flex: 1 1 45%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 3px; /* уменьшено расстояние */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="file"],
+    select {
+        padding: 8px; /* уменьшено padding */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 13px; /* уменьшен размер шрифта */
+    }
+
+    select:focus,
+    input:focus {
+        outline: none;
+        border-color: black;
+        border-width: 2px;
+    }
+
+    .full-width {
+        flex: 1 1 100%;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px; /* уменьшено padding */
+        background-color: #28a745;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 15px; /* уменьшен размер шрифта */
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    @media (max-width: 600px) {
+        .form-group {
+            flex: 1 1 100%;
+        }
+    }
+    </style>
+</head>
+<body>
+
+<div class="registration-form">
+    <h2>Регистрация врача</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required maxlength="150">
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Фамилия:</label>
+            <input type="text" id="surname" name="surname" required maxlength="150">
+        </div>
+
+        <div class="form-group">
+            <label for="patronymic">Отчество:</label>
+            <input type="text" id="patronymic" name="patronymic" required maxlength="150">
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Опыт работы:</label>
+            <input type="number" id="experience" name="experience" required max="80">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Адрес:</label>
+            <input type="text" id="address" name="address" required maxlength="300">
+        </div>
+
+        <div class="form-group">
+            <label for="img">Фото:</label>
+            <input type="file" id="img" name="img" required accept="image/*">
+        </div>
+
+        <div class="form-group full-width">
+            <label for="description">О себе:</label>
+            <input type="text" id="description" name="description" required maxlength="300">
+        </div>
+
+        <div class="form-group full-width">
+            <label for="services">Выберите услугу:</label>
+            <select id="services" name="services" multiple required>
+                {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }} — {{ service.price }} руб</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group full-width">
+            <button type="submit">Зарегистрироваться</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

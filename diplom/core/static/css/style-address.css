@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;}
+.main{
+    font-family: "Montserrat-SemiBold";
+    color: white;
+}
+.header {
+  display: flex;
+  padding-left: 10px;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  height: 60px;
+  background-color: #39968B;
+}
+.logo, .doctors, .account, .appoint {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.logo{
+  gap: 8px;
+}
+a{
+    text-decoration: none; /*подчеркивание*/
+    color: inherit; /*цвет убирает ссылка*/
+}
+.img{
+ height: 35px;
+ width: 35px;
+}
+.img1{
+ height: 40px;
+ width: 40px;
+ }
+.find input[type="search"] {
+    width: 620px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: "Montserrat-SemiBold";
+}
+.find input[type="search"]:focus {
+    outline: none;
+}
+.find input[type="search"]::placeholder {
+    color: #888;
+    font-style: Italic;
+}
+
+
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url("../montserrat/Montserrat-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("../montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+/*Montserrat-Regular*/

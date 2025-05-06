@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Записи</title>
+<link rel="stylesheet" href="../static/css/styles_dashboard.css">
+<link type="image/x-icon" href="../static/images/shared-vision.png" rel="icon">
+<style>
+    .no-records {
+    font-size: 16px;
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+</style>
+{% endblock %}
+{% block content %}
+{% if appointments %}
+    <ul class="doctor-list">
+        {% for appointment in appointments %}
+            {% if appointment.status != 'canceled' %}
+                <li class="doctor-item">
+                    <img class="doctor-img" src="{{ appointment.doctor.img.url }}" alt="Фото доктора">
+                    <div class="doctor-info">
+                        <p class="doctor-name">{{ appointment.doctor }}</p>
+                        <p class="doctor-address">{{ appointment.doctor.address }}</p>
+                        <p class="service-name">{{ appointment.service }}</p>
+                        <p class="service-datetime">{{ appointment.datetime }}</p>
+                    </div>
+
+                    {% if appointment.status == 'scheduled' %}
+                        <form action="{% url 'cancel_appointment' appointment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="cancel-button">Отменить запись</button>
+                        </form>
+                    {% elif appointment.status == 'completed' %}
+                        {% if appointment.id in reviewed_appointments %}
+                            <p class="review-sent">Отзыв оставлен</p>
+                        {% else %}
+                            <form action="{% url 'leave_review' appointment.id %}" method="get">
+                                <button type="submit" class="review-button">Оставить отзыв</button>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="no-records">Записей нет.</p>
+{% endif %}
+{% endblock %}
+
+

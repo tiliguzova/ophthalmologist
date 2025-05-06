@@ -1,0 +1,45 @@
+<!-- templates/admin_services.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги</title>
+<link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+
+</head>
+<body>
+    <h1>Список услуг</h1>
+            <p>
+        <a href="{% url 'admin_panel' %}">🛠️ Административная панель</a>
+    </p>
+    <p>
+        <a href="{% url 'create_service' %}">➕ Создать новою услугу</a>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th class="description-column">Описание</th>
+                <th>Цена</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+            <tr>
+                <td>{{ service.name }}</td>
+                <td>{{ service.description }}</td>
+                <td>{{ service.price }}</td>
+                <td>
+                    <a href="{% url 'edit_service' service.id %}">✏️ Изменить</a> |
+                    <a href="{% url 'delete_service' service.id %}">🗑️ Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

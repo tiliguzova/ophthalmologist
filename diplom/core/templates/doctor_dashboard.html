@@ -1,0 +1,120 @@
+{% extends 'doctor_base.html' %}
+{% load static %}
+{% block head %}
+    <title>Записи</title>
+    <link type="image/x-icon" href="../static/images/shared-vision.png" rel="icon">
+<style>
+/* Общий фон и шрифт */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Список записей */
+.doctor-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+
+
+/* Информация о пациенте */
+.doctor-info {
+  flex: 1;
+}
+
+.doctor-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.doctor-address,
+.service-name {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.doctor-item {
+  position: relative; /* важно! чтобы кнопка позиционировалась внутри блока */
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column; /* для адаптивности */
+  gap: 10px;
+}
+
+/* Кнопка отмены в правом нижнем углу */
+.cancel-button {
+  position: absolute;
+  bottom: 15px;  /* можно увеличить, если нужно ещё ниже */
+  right: 15px;   /* и правее */
+  background-color: #e57373;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-family: "Montserrat-SemiBold", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+}
+.no-records {
+    font-size: 16px;
+    color: #999; /* Цвет текста */
+    background-color: #fff; /* Цвет фона */
+    padding: 40px 20px; /* Отступы */
+    border: 1px dashed #ccc; /* Пунктирная граница */
+    border-radius: 10px; /* Закругленные углы */
+    max-width: 600px; /* Максимальная ширина */
+    margin: 40px auto; /* Отступы сверху и снизу */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Тень */
+    text-align: center; /* Выравнивание текста */
+}
+
+
+</style>
+{% endblock %}
+{% block content %}
+
+{% if appointments %}
+<ul class="doctor-list">
+    {% for appointment in appointments %}
+    <li class="doctor-item">
+        <div class="doctor-info">
+            <a class="doctor-name" href="{% url 'patient_detail' user_id=appointment.user.id appointment_id=appointment.id %}">
+    {{ appointment.user.username }}
+</a>
+            <p class="doctor-address">{{ appointment.service }}</p>
+            <p class="service-name">{{ appointment.datetime }}</p>
+        </div>
+        <form action="{% url 'cancel_appointment_doctor' appointment.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="cancel-button">Отменить запись</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p class="no-records">К вам нет записей.</p>
+{% endif %}
+{% endblock %}
+
+
+{% block script %}
+
+{% endblock %}

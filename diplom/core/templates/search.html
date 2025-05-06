@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Результаты поиска</title>
+<link rel="stylesheet" href="{% static 'css/styles_home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if results %}
+    <ul class="doctor-list">
+        {% for doctor in results %}
+        <li class="doctor-item">
+            {% if doctor.img %}
+                <img src="{{ doctor.img.url }}" class="doctor-img">
+            {% else %}
+                <img src="{% static 'images/user.png' %}" class="doctor-img">
+            {% endif %}
+            <div class="doctor-info">
+                <div class="doctor-name">
+                    <a href="{% url 'doctor_detail' doctor.id %}">
+                        {{ doctor.surname }} {{ doctor.name }} {{ doctor.patronymic }}
+                    </a>
+                </div>
+                <div><p>{{ doctor.description }}</p></div>
+                <div class="doctor-experience">
+                    <p>Стаж {{ doctor.experience }} лет</p>
+                </div>
+                <div class="doctor-address">
+                    <p>{{ doctor.address }}</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>По вашему запросу ничего не найдено. Попробуйте изменить запрос.</p>
+{% endif %}
+{% endblock %}

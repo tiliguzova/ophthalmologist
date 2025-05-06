@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'images/shared-vision.png' %}" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>Печать</title>
+<style>
+    body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14pt;
+        color: #000;
+        margin: 0;
+        background: white;
+    }
+
+    .page {
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 2.5cm;
+        margin: 1cm auto;
+        border: 1px solid #000;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 16pt;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        border-bottom: 1px solid #000;
+        padding-bottom: 5px;
+    }
+
+    img {
+        display: block;
+        margin: 20px auto;
+        max-width: 80px;
+    }
+
+    p {
+        margin: 12pt 0;
+        line-height: 1.5;
+        text-align: justify;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    .signature-section {
+        margin-top: 40px;  /* Уменьшили отступ */
+    }
+
+    .signature-section p {
+        text-align: left;
+        margin-bottom: 20px;  /* Уменьшили отступы между подписями */
+    }
+
+    .signature-label {
+        display: inline-block;
+        width: 40%;
+    }
+
+button {
+    position: relative;  /* Или 'absolute' для точного позиционирования */
+    top: -30px;  /* Сдвигаем кнопку вверх */
+    left: 50%;  /* Центрируем кнопку по горизонтали */
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 14pt;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    @media print {
+        button {
+            display: none;
+        }
+
+        .page {
+            border: none;
+            box-shadow: none;
+            margin: 0;
+        }
+    }
+</style>
+
+
+
+
+</head>
+<body>
+<div class="page">
+    <h2>Медицинский центр "Офтальмолог"</h2>
+    <img src="{% static 'images/shared-vision.png' %}">
+    <h2>Медицинская запись</h2>
+    <p><strong>Врач:</strong> {{ record.doctor.user.username }}</p>
+    <p><strong>Пациент:</strong> {{ record.user.username }}</p>
+    <p><strong>Описание:</strong> {{ record.description }}</p>
+    <p><strong>Результаты:</strong> {{ record.results }}</p>
+{% if record.prescription %}
+  <p><strong>Рецепт:</strong> {{ record.prescription }}</p>
+{% endif %}
+
+    <p><strong>Услуга:</strong> {{ record.appointment.service.name }}</p>
+    <p><strong>Цена:</strong> {{ record.appointment.service.price }}</p>
+    <p><strong>Дата и время:</strong> {{ record.appointment.datetime }}</p>
+
+    <div class="signature-section">
+        <p><span class="signature-label"><strong>Подпись врача:</strong></span> ______________________</p>
+        <p><span class="signature-label"><strong>Печать:</strong></span> ______________________</p>
+    </div>
+</div>
+
+<button onclick="printAndRedirect()">Распечатать</button>
+</div>
+<script>
+function printAndRedirect() {
+    window.print();
+}
+
+window.addEventListener('afterprint', function() {
+    setTimeout(function() {
+        {% if is_doctor %}
+            window.location.href = "{% url 'doctor_dashboard' %}";
+        {% else %}
+            window.location.href = "{% url 'update_user' %}";
+        {% endif %}
+    }, 1000);
+});
+</script>
+</body>
+</html>

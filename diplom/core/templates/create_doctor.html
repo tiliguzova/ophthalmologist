@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание врача</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+        <style>    .form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-field textarea {
+    width: 95%;
+    padding: 8px;
+    resize: vertical;
+}</style>
+</head>
+<body>
+    <h1>Создание нового врача</h1>
+
+<form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.surname.id_for_label }}">{{ form.surname.label }}</label>
+            {{ form.surname }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.patronymic.id_for_label }}">{{ form.patronymic.label }}</label>
+            {{ form.patronymic }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.experience.id_for_label }}">{{ form.experience.label }}</label>
+            {{ form.experience }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+            {{ form.address }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.latitude.id_for_label }}">{{ form.latitude.label }}</label>
+            {{ form.latitude }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.longitude.id_for_label }}">{{ form.longitude.label }}</label>
+            {{ form.longitude }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.img.id_for_label }}">{{ form.img.label }}</label>
+            {{ form.img }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.services.id_for_label }}">{{ form.services.label }}</label>
+            {{ form.services }}
+        </div>
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+
+</body>
+</html>

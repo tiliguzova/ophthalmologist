@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<title>Врач</title>
+<link rel="stylesheet" href="{% static 'css/styles_home.css' %}">
+<style>
+/* Измененные стили для центрирования контента и фото врача */
+#doctor-info {
+  max-width: 900px;
+  margin: 40px auto; /* Добавлен отступ сверху и снизу от шапки и подвала */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Центрируем весь контент внутри контейнера */
+}
+
+#doctor-info img {
+  width: 200px;
+  height: 200px;
+  margin: 20px 0; /* Отступ сверху и снизу для фото */
+  border-radius: 50%; /* Круглая форма для фото */
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для фото */
+}
+
+#doctor-info .description {
+  font-size: 16px;
+  color: #555;
+}
+
+#doctor-info .experience,
+#doctor-info .address {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+#services-list, #reviews-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+.service-item, .review-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-item a, .review-item a {
+  text-decoration: none;
+  color: #333;
+}
+
+strong {
+  font-weight: bold;
+  color: #333;
+}
+
+em {
+  font-style: italic;
+  color: #777;
+}
+
+/* Заголовки и разделы */
+#doctor-info h1 {
+  font-family: "Montserrat-SemiBold", sans-serif;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#services-list h2, #reviews-list h2 {
+  font-family: "Montserrat-SemiBold", sans-serif;
+  text-align: center;
+  margin-top: 30px; /* Увеличиваем отступ между заголовком и отзывами/услугами */
+  color: #333;
+}
+
+.reviews-section {
+  margin-top: 50px; /* Увеличиваем отступ между отзывами и предыдущими элементами */
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="doctor-info">
+  <h1>{{ doctor.surname }} {{ doctor.name }} {{ doctor.patronymic }}</h1>
+  <img src="{{ doctor.img.url }}" alt="Фото врача">
+  <p><strong>Описание:</strong> {{ doctor.description }}</p>
+  <p><strong>Опыт:</strong> {{ doctor.experience }} лет</p>
+  <p><strong>Адрес:</strong> {{ doctor.address }}</p>
+
+  <h2>Услуги:</h2>
+  <ul id="services-list">
+    {% for service in services %}
+      <li class="service-item">
+        <a href="{% url 'service_detail' doctor.id service.id %}">
+          <strong>{{ service.name }}</strong> – {{ service.price }}₽<br>
+          <em>{{ service.description }}</em>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="reviews-section">
+  {% if doctor.reviews.all %}
+    <h2>Отзывы:</h2>
+    <ul id="reviews-list">
+      {% for review in doctor.reviews.all %}
+        <li class="review-item">
+          <p class="user"><strong>{{ review.user.username }}</strong>:</p>
+          <p class="content">{{ review.content }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+</div>
+{% endblock %}

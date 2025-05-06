@@ -1,0 +1,82 @@
+/* Фон страницы — светло-зелёный оттенок */
+body {
+    background-color: #eafaf1;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* Заголовки модулей — нежно-зелёные */
+.module h2, .module caption {
+    background-color: #74c69d;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+/* Кнопки: сохранить, добавить и т.д. */
+input[type="submit"], .button {
+    background-color: #40916c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover, .button:hover {
+    background-color: #2d6a4f;
+}
+
+/* Таблицы: более мягкие линии и увеличенные отступы */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background-color: #52b788;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Навигация в админке */
+#header {
+    background-color: #40916c;
+    padding: 20px;
+    border-bottom: 4px solid #2d6a4f;
+}
+
+#header a {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Поля ввода: с зелёной рамкой и мягкими углами */
+input[type="text"], textarea, select {
+    border: 1px solid #74c69d;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+/* Отступы для форм и блоков */
+.form-row {
+    margin-bottom: 20px;
+}
+
+fieldset {
+    padding: 20px;
+    border: 1px solid #74c69d;
+    border-radius: 8px;
+}

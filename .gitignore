@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+*.log
+*.pot
+*.pyc
+*.db
+.env
+.venv/
+env/
+venv/
+media/
+.mypy_cache/
+.coverage
+htmlcov/

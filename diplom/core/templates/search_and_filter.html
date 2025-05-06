@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Результаты поиска и фильтрации</title>
+<link rel="stylesheet" href="{% static 'css/styles_home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<ul class="doctor-list">
+    {% for doctor in doctors %}
+    <li class="doctor-item">
+        {% if doctor.img %}
+            <img src="{{ doctor.img.url }}" class="doctor-img">
+        {% else %}
+            <img src="{% static 'images/user.png' %}" class="doctor-img">
+        {% endif %}
+        <div class="doctor-info">
+            <div class="doctor-name">
+                <a href="{% url 'doctor_detail' doctor.id %}">
+                    {{ doctor.surname }} {{ doctor.name }} {{ doctor.patronymic }}
+                </a>
+            </div>
+            <div><p>{{ doctor.description }}</p></div>
+            <div class="doctor-experience">
+                <p>Стаж {{ doctor.experience }} лет</p>
+            </div>
+            <div class="doctor-address">
+                <p>{{ doctor.address }}</p>
+            </div>
+        </div>
+    </li>
+    {% empty %}
+    <li>Врачи не найдены по заданным фильтрам.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

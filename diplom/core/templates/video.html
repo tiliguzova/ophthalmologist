@@ -1,0 +1,44 @@
+<!-- video.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Видеовстреча</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #meet {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="meet"></div>
+
+    <script src='https://meet.jit.si/external_api.js'></script>
+    <script>
+        const domain = "meet.jit.si";
+        const options = {
+            roomName: "{{ room_name }}",  // Получаем room_name из Django
+            width: "100%",
+            height: "100%",
+            parentNode: document.querySelector('#meet'),
+            interfaceConfigOverwrite: {
+                SHOW_JITSI_WATERMARK: false,
+                DEFAULT_REMOTE_DISPLAY_NAME: 'Участник',
+            },
+            configOverwrite: {
+                startWithAudioMuted: true,
+                startWithVideoMuted: false,
+            },
+            userInfo: {
+                displayName: "{{ user.username }}"  // Имя пользователя
+            }
+        };
+        const api = new JitsiMeetExternalAPI(domain, options);
+    </script>
+</body>
+</html>

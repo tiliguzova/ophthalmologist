@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; /* Обеспечивает, что .wrapper будет занимать всю высоту экрана */
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1; /* Контент растягивается, занимая доступное пространство */
+  font-family: "Montserrat-SemiBold", sans-serif;
+  color: black;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  gap: 30px;
+  height: 60px;
+  background-color: #62e389;
+  position: relative;
+}
+
+.logo, .address, .account, .appoint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.img {
+  height: 35px;
+  width: 35px;
+}
+
+.img1 {
+  height: 40px;
+  width: 40px;
+}
+
+.find input[type="search"] {
+  width: 620px;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.find input[type="search"]:focus {
+  outline: none;
+}
+
+.find input[type="search"]::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.footer {
+
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  justify-content: space-evenly;
+  padding: 10px 0;
+  background-color: #62e389;
+  text-align: center;
+  margin-top: auto;
+
+}
+
+.footer h3 {
+  margin: 0;
+}
+
+.afooter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.afooter img {
+  width: 30px;
+  height: 30px;
+}
+
+.copy {
+  text-align: center;
+  padding: 1px;
+  background-color: #2b9c4b;
+  font-size: 10px;
+  color: black;
+}
+
+@font-face {
+  font-family: "Montserrat-SemiBold";
+  src: url("../montserrat/Montserrat-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("../montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+.filter-section {
+    position: absolute;
+    top: 65px; /* Располагаем ниже хедера */
+    left: 20px; /* Сдвигаем влево */
+    z-index: 1000;
+    background-color: transparent; /* Прозрачный фон контейнера */
+    padding: 0; /* Убираем отступы у контейнера */
+    border-radius: 8px;
+    display: none; /* Скрываем по умолчанию */
+    width: auto; /* Ширина по содержимому */
+    height: auto; /* Высота по содержимому */
+}
+
+.header:hover .filter-section,
+.filter-form:hover {
+    display: block; /* Показываем при наведении на форму */
+}
+
+
+.filter-form {
+    margin: 0; /* Убираем внешние отступы */
+    padding: 20px; /* Внутренние отступы только у формы */
+    width: 150px; /* Фиксированная ширина формы */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Чтобы отступы не увеличивали общую ширину */
+}
+
+.filter-form input[type="number"] {
+    padding: 10px;
+    margin: 0.5px 0 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%; /* Устанавливаем ширину 100% от родительского контейнера */
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+}
+
+
+/* Остальные стили формы остаются без изменений */
+.filter-form h6 {
+    font-family: "Montserrat-SemiBold", sans-serif;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 16px;
+    margin-top: 0;
+}
+
+
+.filter-form input[type="number"]:focus {
+    border-color: #62e389;
+    outline: none;
+}
+
+.filter-form button {
+    padding: 10px 15px;
+    background-color: #62e389;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-family: "Montserrat-SemiBold", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.filter-form button:hover {
+    background-color: #50b56e;
+}

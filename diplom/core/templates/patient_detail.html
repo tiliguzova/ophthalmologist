@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление записи</title>
+  <link rel="icon" href="{% static 'images/shared-vision.png' %}" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .record-form {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 6px 0;
+      color: #555;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    textarea {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #43a047;
+    }
+  </style>
+</head>
+<body>
+  <div class="record-form">
+    <h2>Пациент: {{ user.username }}</h2>
+    <h3>Добавить новую запись:</h3>
+    <form method="post">
+      {% csrf_token %}
+      <textarea name="description" placeholder="Описание приёма..."></textarea>
+      <textarea name="results" placeholder="Результаты обследования..."></textarea>
+      <textarea name="prescription" placeholder="Рецепт (необязательно)"></textarea>
+      <button type="submit">Сохранить заключение</button>
+    </form>
+  </div>
+</body>
+</html>

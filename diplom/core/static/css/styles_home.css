@@ -1,0 +1,72 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
+
+.doctor-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+.doctor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #62e389;
+}
+
+.doctor-info {
+  flex: 1;
+}
+
+.doctor-name p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px; /* Увеличен отступ */
+}
+
+.doctor-description p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 20px; /* Увеличен отступ */
+}
+
+.doctor-experience p,
+.doctor-address p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px; /* Увеличен отступ */
+}
+
+.doctor-name,
+.doctor-description,
+.doctor-experience,
+.doctor-address {
+  padding: 3px 0;
+}

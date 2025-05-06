@@ -1,0 +1,43 @@
+<!-- templates/admin_reviews.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+</head>
+<body>
+    <h1>Список отзывов</h1>
+            <p>
+        <a href="{% url 'admin_panel' %}">🛠️ Административная панель</a>
+    </p>
+        <p>
+        <a href="{% url 'create_review' %}">➕ Создать новый отзыв</a>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Врач</th>
+                <th>Контент отзыва</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.user.username }}</td>
+                <td>{{ review.doctor.name }} {{ review.doctor.surname }}</td>
+                <td>{{ review.content }}</td>
+                <td>
+                    <a href="{% url 'edit_review' review.id %}">✏️ Изменить</a> |
+                    <a href="{% url 'delete_review' review.id %}">🗑️ Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

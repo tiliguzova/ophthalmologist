@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание услуги</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+    <style>    .form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-field textarea {
+    width: 95%;
+    padding: 8px;
+    resize: vertical;
+}</style>
+</head>
+<body>
+    <h1>Создание новой услуги</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="form-field">
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+        {{ form.name }}
+    </div>
+
+    <div class="form-field">
+        <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+        {{ form.description }}
+    </div>
+
+    <div class="form-field">
+        <label for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
+        {{ form.price }}
+    </div>
+
+    <button type="submit">Сохранить изменения</button>
+</form>
+
+
+</body>
+</html>

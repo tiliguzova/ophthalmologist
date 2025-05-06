@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles_base.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/shared-vision.png' %}">
+    <meta charset="UTF-8">
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="wrapper">
+    <div class="main">
+        <div class="header">
+            <a href="{% url 'doctor_dashboard' %}">
+                <div class="logo">
+                    <img class="img1 eyeimage" src="{% static 'images/shared-vision.png' %}">
+                    <p>Офтальмолог</p>
+                </div>
+            </a>
+            <form action="{% url 'search_doctor' %}" method="get" class="find">
+                <input name="s" placeholder="Найти на Офтальмолог" type="search">
+            </form>
+            <a href="{% url 'select-user' %}">
+                <div class="address">
+                    <img class="img adressimage" src="{% static 'images/video-camera.png' %}">
+                    <p>Видео</p>
+                </div>
+            </a>
+            <a href="{% url 'doctor_review' user.id %}">
+                <div class="appoint">
+                    <img class="img appointimage" src="{% static 'images/review.png' %}">
+                    <p>Отзывы</p>
+                </div>
+            </a>
+            <a href="{% url 'update_user' %}">
+                <div class="account">
+                    <img class="img userimage" src="{% static 'images/user.png' %}">
+                    <p>Профиль</p>
+                </div>
+            </a>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        <h3>+7 (499) 390-65-26</h3>
+        <h3>Минск, ул. Россолимо, д.11а</h3>
+        <a class="afooter" href="https://www.instagram.com"><img class="img" src="{% static 'images/photo.png' %}"><h3>Instagram</h3></a>
+        <a class="afooter" href="https://www.youtube.com"><img class="img" src="{% static 'images/youtube.png' %}"><h3>Youtube</h3></a>
+        <a class="afooter" href="https://www.facebook.com"><img class="img" src="{% static 'images/social-media.png' %}"><h3>Facebook</h3></a>
+        <a class="afooter" href="https://www.vk.com"><img class="img" src="{% static 'images/social.png' %}"><h3>VKontakte</h3></a>
+    </div>
+    <div class="copy">
+        <h3>© 2025 Офтальмолог. Все права защищены.</h3>
+    </div>
+</div>
+
+<script>
+{% block script %}
+function adjustFooter() {
+    const footer = document.querySelector('.footer');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const windowHeight = window.innerHeight;
+    const bodyHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight);
+
+    if (bodyHeight < windowHeight) {
+        footer.style.position = 'fixed';
+        footer.style.bottom = '0';
+        footer.style.width = '100%';
+        footer.style.display = 'flex';
+    } else {
+        footer.style.position = 'relative';
+        footer.style.bottom = 'auto';
+        footer.style.display = 'flex';
+    }
+}
+window.addEventListener('load', adjustFooter);
+window.addEventListener('resize', adjustFooter);
+{% endblock %}
+</script>
+</body>
+</html>

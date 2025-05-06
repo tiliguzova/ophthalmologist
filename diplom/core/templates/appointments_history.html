@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>История приемов</title>
+<link rel="stylesheet" href="{% static 'css/styles_base.css' %}">
+<link type="image/x-icon" href="{% static 'images/shared-vision.png' %}" rel="icon">
+<style>
+.no-records {
+    font-size: 16px;
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+    /* Общие стили для страницы */
+    body {
+        font-family: "Montserrat-Regular", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+    h2 {
+        font-family: "Montserrat-SemiBold", sans-serif;
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+    }
+
+    /* Стили для списка истории приемов */
+    .doctor-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px auto;
+        max-width: 900px;
+    }
+
+    .doctor-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .doctor-img-container {
+        flex-shrink: 0;
+    }
+
+    .doctor-img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #62e389;
+    }
+
+    .doctor-info {
+        flex: 1;
+    }
+
+    .doctor-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .doctor-details {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .doctor-details strong {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .doctor-details hr {
+        border: 0;
+        border-top: 1px solid #ddd;
+        margin: 15px 0;
+    }
+
+    /* Кнопки */
+    button {
+        padding: 10px 15px;
+        background-color: #62e389;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-family: "Montserrat-SemiBold", sans-serif;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #50b56e;
+    }
+
+    /* Стили для текста сообщения об отсутствии записей */
+    .doctor-list p {
+        text-align: center;
+        color: #777;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>История приемов</h2>
+
+{% if medical_records %}
+    <ul class="doctor-list">
+        {% for record in medical_records %}
+        <li class="doctor-item">
+            <div class="doctor-img-container">
+                <img class="doctor-img" src="{{ record.doctor.img.url }}" alt="Фото врача">
+            </div>
+            <div class="doctor-info">
+                <div class="doctor-name">
+    <a href="{% url 'print_medical_record' record.id %}" target="_blank" style="text-decoration: none; color: inherit;">
+        {{ record.doctor }}
+    </a>
+</div>
+                <div class="doctor-details">
+                    <strong>Результаты обследования:</strong> {{ record.results }} <br>
+                    {% if record.prescription %}
+                        <strong>Назначения:</strong> {{ record.prescription }} <br>
+                    {% endif %}
+                    <strong>Дата:</strong> {{ record.created_at }} <br>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p class="no-records">У вас нет истории приемов.</p>
+
+{% endif %}
+{% endblock %}
+
+

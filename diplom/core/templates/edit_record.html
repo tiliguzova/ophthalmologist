@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать медицинскую запись</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+        <style>
+    .form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-field textarea {
+    width: 92%;
+    padding: 8px;
+    resize: vertical;
+}
+</style>
+</head>
+<body>
+    <h1>Редактировать медицинскую запись</h1>
+   <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label for="{{ form.user.id_for_label }}">{{ form.user.label }}</label>
+            {{ form.user }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.doctor.id_for_label }}">{{ form.doctor.label }}</label>
+            {{ form.doctor }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.appointment.id_for_label }}">{{ form.appointment.label }}</label>
+            {{ form.appointment }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.results.id_for_label }}">{{ form.results.label }}</label>
+            {{ form.results }}
+        </div>
+
+        <div class="form-field">
+            <label for="{{ form.prescription.id_for_label }}">{{ form.prescription.label }}</label>
+            {{ form.prescription }}
+        </div>
+
+        <button type="submit">Создать запись</button>
+    </form>
+</body>
+</html>

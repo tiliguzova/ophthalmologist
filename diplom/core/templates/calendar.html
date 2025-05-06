@@ -1,0 +1,112 @@
+{% extends 'doctor_base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Календарь</title>
+<link rel="stylesheet" href="{% static 'css/styles_base.css' %}">
+<link type="image/x-icon" href="{% static 'images/shared-vision.png' %}" rel="icon">
+<style>
+  .calendar-page {
+    font-family: "Montserrat-Regular", sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+
+  }
+
+  .calendar-page h2 {
+    font-family: "Montserrat-SemiBold", sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+  }
+
+  .calendar-page table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* округлые углы */
+    overflow: hidden;
+  }
+
+  .calendar-page th, .calendar-page td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .calendar-page th {
+    background-color: #62e389;
+    color: white;
+    font-family: "Montserrat-SemiBold", sans-serif;
+  }
+
+  .calendar-page tr:last-child td {
+    border-bottom: none;
+  }
+
+  .calendar-page td {
+    background-color: #f9f9f9;
+  }
+
+  .calendar-page tr:hover td {
+    background-color: #f1f1f1;
+  }
+
+  .calendar-page th, .calendar-page td {
+    border-top: 1px solid #ddd;
+  }
+
+  .calendar-page tr:first-child th {
+    border-top: none;
+  }
+
+  .no-records {
+    font-size: 16px;
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    background-color: #fff;
+    border: 1px dashed #ccc;
+    border-radius: 15px; /* округлые углы */
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="calendar-page">
+  <h2>Календарь работ {{ user.doctor.surname }} {{ user.doctor.name }}</h2>
+
+  {% if work_days %}
+    <table>
+      <tr>
+        <th>Дата</th>
+        <th>Время приёмов</th>
+      </tr>
+      {% for date, times in work_days.items %}
+        <tr>
+          <td>{{ date }}</td>
+          <td>
+            {% for time in times %}
+              {{ time|time:"H:i" }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="no-records">Нет данных о приёмах.</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

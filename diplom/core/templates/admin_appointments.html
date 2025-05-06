@@ -1,0 +1,47 @@
+<!-- templates/admin_appointments.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Записи</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+</head>
+<body>
+    <h1>Список записей</h1>
+        <p>
+        <a href="{% url 'admin_panel' %}">🛠️ Административная панель</a>
+    </p>
+    <p>
+        <a href="{% url 'create_appointment' %}">➕ Создать новою запись</a>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Врач</th>
+                <th>Дата и время</th>
+                <th>Услуга</th>
+                <th>Статус</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.user.username }}</td>
+                <td>{{ appointment.doctor.name }} {{ appointment.doctor.surname }}</td>
+                <td>{{ appointment.datetime }}</td>
+                <td>{{ appointment.service.name }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    <a href="{% url 'edit_appointment' appointment.id %}">✏️ Изменить</a> |
+                    <a href="{% url 'delete_appointment' appointment.id %}">🗑️ Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

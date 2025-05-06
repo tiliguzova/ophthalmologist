@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Главная</title>
+<link rel="stylesheet" href="{% static 'css/styles_home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+
+<form method="get" action="{% url 'filtr' %}">
+    <h6>Стаж</h6>
+    <input type="number" name="experience_min" placeholder="от" value="{{ request.GET.experience_min }}">
+    <input type="number" name="experience_max" placeholder="до" value="{{ request.GET.experience_max }}">
+
+    <h6>Количество услуг</h6>
+    <input type="number" name="services_count_min" placeholder="от" value="{{ request.GET.services_count_min }}">
+    <input type="number" name="services_count_max" placeholder="до" value="{{ request.GET.services_count_max }}">
+
+        <h6>Количество отзывов</h6>
+    <input type="number" name="reviews_count_min" placeholder="от" value="{{ request.GET.reviews_count_min }}">
+    <input type="number" name="reviews_count_max" placeholder="до" value="{{ request.GET.reviews_count_max }}">
+
+    <button type="submit">Фильтровать</button>
+</form>
+
+
+
+
+
+<ul class="doctor-list">
+    {% for doctor in doctors %}
+    <li class="doctor-item">
+        {% if doctor.img %}
+            <img src="{{ doctor.img.url }}" class="doctor-img">
+        {% else %}
+            <img src="{% static 'images/user.png' %}" class="doctor-img">
+        {% endif %}
+        <div class="doctor-info">
+            <div class="doctor-name">
+                <a href="{% url 'doctor_detail' doctor.id %}">
+                    {{ doctor.surname }} {{ doctor.name }} {{ doctor.patronymic }}
+                </a>
+            </div>
+            <div><p>{{ doctor.description }}</p></div>
+            <div class="doctor-experience">
+                <p>Стаж {{ doctor.experience }} лет</p>
+            </div>
+            <div class="doctor-address">
+                <p>{{ doctor.address }}</p>
+            </div>
+        </div>
+    </li>
+    {% empty %}
+    <li>Врачи не найдены по заданным фильтрам.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

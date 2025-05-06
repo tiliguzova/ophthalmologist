@@ -1,0 +1,48 @@
+<!-- templates/admin_doctors.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Врачи</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+</head>
+<body>
+    <h1>Список врачей</h1>
+            <p>
+        <a href="{% url 'admin_panel' %}">🛠️ Административная панель</a>
+    </p>
+        <p>
+        <a href="{% url 'create_doctor' %}">➕ Создать нового врача</a>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя врача</th>
+                <th>Описание</th>
+                <th>Услуги</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.name }} {{ doctor.surname }}</td>
+                <td>{{ doctor.description }}</td>
+                <td>
+                    {% for service in doctor.services.all %}
+                        {{ service.name }}<br>
+                    {% endfor %}
+                </td>
+                  <td>
+                    <a href="{% url 'edit_doctor' doctor.id %}">✏️ Изменить</a> |
+                    <a href="{% url 'delete_doctor' doctor.id %}">🗑️ Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

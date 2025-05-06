@@ -1,0 +1,205 @@
+body {
+  font-family: "Montserrat-Regular", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  font-family: "Montserrat-SemiBold", sans-serif;
+  text-align: center;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* Стили для списка врачей */
+.doctor-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 900px; /* Ограничение ширины списка */
+}
+
+.doctor-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px; /* Фиксированная ширина карточки */
+  width: 100%; /* Адаптация для разных экранов */
+}
+
+.doctor-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #62e389;
+}
+
+.doctor-info {
+  flex: 1; /* Растягивает информацию на всю оставшуюся ширину */
+}
+
+.doctor-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.doctor-address {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.doctor-services {
+  margin-top: 10px;
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.service-img {
+  width: 16px;
+  height: 16px;
+}
+
+.service-list {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  display: none; /* Скрыто по умолчанию */
+}
+
+.service-item {
+  margin-bottom: 10px;
+}
+
+.service-name {
+  font-size: 14px;
+  color: #555;
+}
+
+.service-description {
+ font-size: 14px;
+  color: #555;
+}
+
+.service-price {
+ font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+.service-date, .service-time{
+ font-size: 14px;
+  color: #555;}
+button {
+  padding: 10px 15px;
+  background-color: #62e389;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Montserrat-SemiBold", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #50b56e;
+}
+
+
+
+
+/* Общий контейнер для кнопки и статуса */
+.doctor-item {
+  position: relative; /* Устанавливаем позиционирование для дочерних элементов */
+}
+
+/* Стили для кнопки отмены */
+.cancel-button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 15px;
+  width: 160px; /* ✅ фиксируем ширину, можно подогнать под нужную */
+  text-align: center; /* выравниваем текст по центру */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Montserrat-SemiBold", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+.review-button:hover {
+  background-color: #f39c12;
+}
+/* Стили для текста "Отзыв отправлен" */
+
+
+.review-button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 15px;
+  width: 160px; /* ✅ фиксируем ширину, можно подогнать под нужную */
+  text-align: center; /* выравниваем текст по центру */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Montserrat-SemiBold", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Стили для статуса "отменено" */
+.status-canceled {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 14px;
+  color: #999;
+  font-family: "Montserrat-SemiBold", sans-serif;
+}
+
+
+
+/* Стили для текста "Отзыв отправлен" */
+.review-sent {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 15px;
+  width: 160px; /* Фиксированная ширина, как у кнопки */
+  text-align: center; /* Выравнивание текста по центру */
+  background-color: #62e389; /* Зеленый фон, как у кнопки */
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Montserrat-SemiBold", sans-serif;
+  font-size: 14px;
+  cursor: not-allowed; /* Убираем курсор "pointer", чтобы он не был кликабельным */
+}
+
+.review-sent:hover {
+  background-color: #50b56e; /* Темный оттенок зеленого на ховер */
+}
+
+

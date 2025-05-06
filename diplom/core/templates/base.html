@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/styles_base.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/shared-vision.png' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="wrapper">
+        <div class="main">
+            <div class="header">
+                {% if user.role == 'doctor' %}
+                    <a href="{% url 'doctor_dashboard' %}">
+                {% else %}
+                    <a href="{% url 'home' %}">
+                {% endif %}
+                    <div class="logo">
+                        <img class="img1 eyeimage" src="{% static 'images/shared-vision.png' %}">
+                        <p>Офтальмолог</p>
+                    </div>
+                </a>
+
+                <form action="{% url 'search_and_filter' %}" method="get" class="find">
+                    <input name="s" placeholder="Найти на Офтальмолог" type="search">
+                </form>
+
+                <a href="{% url 'address' %}">
+                    <div class="address">
+                        <img class="img adressimage" src="{% static 'images/pin.png' %}">
+                        <p>Адреса</p>
+                    </div>
+                </a>
+
+                <a href="{% url 'dashboard' %}">
+                    <div class="appoint">
+                        <img class="img appointimage" src="{% static 'images/calendar.png' %}">
+                        <p>Записи</p>
+                    </div>
+                </a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'update_user' %}">
+                        <div class="account">
+                            <img class="img userimage" src="{% static 'images/user.png' %}">
+                            <p>Профиль</p>
+                        </div>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}">
+                        <div class="account">
+                            <img class="img userimage" src="{% static 'images/user.png' %}">
+                            <p>Войти</p>
+                        </div>
+                    </a>
+                {% endif %}
+
+                {% if request.resolver_match.url_name == 'home' or request.resolver_match.url_name == 'search_and_filter' %}
+                    <div class="filter-section">
+                        <form method="get" action="{% url 'search_and_filter' %}" class="filter-form">
+                            <h6>Стаж</h6>
+                            <input type="number" name="experience_min" placeholder="от" value="{{ request.GET.experience_min }}">
+                            <input type="number" name="experience_max" placeholder="до" value="{{ request.GET.experience_max }}">
+
+                            <h6>Количество услуг</h6>
+                            <input type="number" name="services_count_min" placeholder="от" value="{{ request.GET.services_count_min }}">
+                            <input type="number" name="services_count_max" placeholder="до" value="{{ request.GET.services_count_max }}">
+
+                            <h6>Количество отзывов</h6>
+                            <input type="number" name="reviews_count_min" placeholder="от" value="{{ request.GET.reviews_count_min }}">
+                            <input type="number" name="reviews_count_max" placeholder="до" value="{{ request.GET.reviews_count_max }}">
+
+                            <button type="submit">Фильтр</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% block content %}{% endblock %}
+        </div> <!-- .main -->
+
+        <div class="footer">
+            <h3>+7 (499) 390-65-26</h3>
+            <h3>Минск, ул. Россолимо, д.11а</h3>
+
+            <a class="afooter" href="https://www.instagram.com">
+                <img class="img" src="{% static 'images/photo.png' %}">
+                <h3>Instagram</h3>
+            </a>
+            <a class="afooter" href="https://www.youtube.com">
+                <img class="img" src="{% static 'images/youtube.png' %}">
+                <h3>Youtube</h3>
+            </a>
+            <a class="afooter" href="https://www.facebook.com">
+                <img class="img" src="{% static 'images/social-media.png' %}">
+                <h3>Facebook</h3>
+            </a>
+            <a class="afooter" href="https://www.vk.com">
+                <img class="img" src="{% static 'images/social.png' %}">
+                <h3>VKontakte</h3>
+            </a>
+        </div>
+
+        <div class="copy">
+            <h3>© 2025 Офтальмолог. Все права защищены.</h3>
+        </div>
+    </div> <!-- .wrapper -->
+{% block script %}
+    <script>
+        // Функция для очистки поля поиска при отправке формы
+        function clearSearchField() {
+            const searchField = document.querySelector('input[name="s"]');
+            searchField.value = '';
+        }
+
+// Функция для закрепления футера внизу страницы
+function adjustFooter() {
+    const footer = document.querySelector('.footer');
+    const body = document.body;
+    const html = document.documentElement;
+
+    const windowHeight = window.innerHeight;
+    const bodyHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight);
+
+    if (bodyHeight < windowHeight) {
+        footer.style.position = 'fixed';
+        footer.style.bottom = '0';
+        footer.style.width = '100%';
+        footer.style.display = 'flex';  // Устанавливаем display, если нужно
+        footer.style.setProperty('position', 'fixed', 'important');
+    } else {
+        footer.style.position = 'relative';
+        footer.style.bottom = 'auto';
+        footer.style.display = 'flex';  // Важно сохранить display для нормального потока
+    }
+}
+
+
+
+    </script>
+    {% endblock %}
+</body>
+
+</html>

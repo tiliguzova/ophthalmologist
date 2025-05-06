@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Медицинские записи</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+</head>
+<body>
+    <h1>Медицинские записи</h1>
+            <p>
+        <a href="{% url 'admin_panel' %}">🛠️ Административная панель</a>
+    </p>
+     <p>
+        <a href="{% url 'create_medicalrecord' %}">➕ Создать новою медицинскую запись</a>
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Врач</th>
+                <th>Описание</th>
+                <th>Результаты</th>
+                <th>Назначения</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.user.username }}</td>
+                <td>{{ record.doctor.name }} {{ record.doctor.surname }}</td>
+                <td>{{ record.description }}</td>
+                <td>{{ record.results }}</td>
+                <td>{{ record.prescription }}</td>
+                <td>
+                    <a href="{% url 'edit_medicalrecord' record.id %}">✏️ Изменить</a> |
+                    <a href="{% url 'delete_medicalrecord' record.id %}">🗑️ Удалить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

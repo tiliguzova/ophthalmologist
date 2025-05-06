@@ -1,0 +1,145 @@
+        .status input {
+    width: 490px !important; /* !important говорит: применяй это правило всегда */
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Центровка заголовка */
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        /* Стили для блоков */
+        .blocks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .block {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .block h3 {
+            margin-top: 0;
+        }
+
+        .block a {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .block a:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для форм */
+        form {
+
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        form div {
+            margin-bottom: 20px;
+        }
+
+        form input, form select, form button {
+            width: 95%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+    form button {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block; /* Это нужно, чтобы элемент стал блочным и центрировался */
+    width: auto;    /* Автоматическая ширина для кнопки */
+}
+
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        form a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        form a:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для таблиц */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .blocks {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Стили для столбца с описанием */
+th.description-column, td.description-column {
+    width: 700px;  /* Установите нужную ширину */
+    word-wrap: break-word;  /* Чтобы текст не выходил за пределы */
+}

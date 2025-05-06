@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание отзыва</title>
+    <link rel="stylesheet" href="{% static 'css/style_admin_all.css' %}">
+      <style>    .form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-field textarea {
+    width: 92%;
+    padding: 8px;
+    resize: vertical;
+}</style>
+</head>
+<body>
+    <h1>Создание отзыва</h1>
+
+<form method="POST">
+        {% csrf_token %}
+
+        <!-- Поле для выбора врача -->
+        <div class="form-field">
+            <label for="{{ form.doctor.id_for_label }}">{{ form.doctor.label }}</label>
+            {{ form.doctor }}
+        </div>
+
+        <!-- Поле для ввода контента отзыва -->
+        <div class="form-field">
+            <label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label>
+            {{ form.content }}
+        </div>
+
+        <!-- Поле для выбора приема -->
+        <div class="form-field">
+            <label for="{{ form.appointment.id_for_label }}">{{ form.appointment.label }}</label>
+            {{ form.appointment }}
+        </div>
+
+        <!-- Кнопка для отправки формы -->
+        <button type="submit">Создать отзыв</button>
+    </form>
+</body>
+</html>

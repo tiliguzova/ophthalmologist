@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link type="image/x-icon" href="../static/images/shared-vision.png" rel="icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .registration-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        select {
+            width: 97%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: black;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="registration-form">
+    <h2>Регистрация</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required maxlength="150">
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password1">Пароль:</label>
+        <input type="password" id="password1" name="password1" required>
+
+        <label for="password2">Подтверждение пароля:</label>
+        <input type="password" id="password2" name="password2" required>
+
+        <label for="role">Пациент или врач:</label>
+        <select id="role" name="role">
+            <option value="patient">Пациент</option>
+            <option value="doctor">Врач</option>
+        </select>
+    {% for message in messages %}
+      <li style="color:red; font-size: 14px; margin-top: 7px;">{{ message }}</li>
+    {% endfor %}
+        <button type="submit">Зарегистрироваться</button>
+        {% if messages %}
+
+{% endif %}
+
+    </form>
+</div>
+
+</body>
+</html>
